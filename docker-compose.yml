@@ -9,21 +9,14 @@ services:
       - ./configs/mosquitto/config:/mosquitto/config
       - ./data/mosquitto/data:/mosquitto/data
       - ./logs/mosquitto/log:/mosquitto/log
-    networks:
-      - shared
+    network_mode: bridge
   infoscreen:
-    image: 
+    image: inuitviking/lpos:0.0.2
     ports:
-      - "8080:80"
-    #secrets:
-    # - server-certificate
+      - "80:8080"
+    expose: [80]
     volumes:
       - ./configs/infoscreen/config:/var/www/config
       - ./data/infoscreen/data:/var/www/data
-      - ./logs/infoscreen/log:/var/www/logs
-    networks:
-      - shared
-
-networks:
-  shared:
-    - driver: bridge
+      - ./logs/infoscreen/logs:/var/www/logs
+    network_mode: bridge
