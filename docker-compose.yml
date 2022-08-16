@@ -11,7 +11,7 @@ services:
       - ./logs/mosquitto/log:/mosquitto/log
     network_mode: bridge
   infoscreen:
-    image: inuitviking/lpos:0.0.2
+    image: inuitviking/lpos:0.0.3
     ports:
       - "80:80"
       - "443:443"
@@ -20,5 +20,6 @@ services:
       - ./configs/infoscreen/apache/httpd.conf:/etc/httpd/conf/httpd.conf
       - ./configs/infoscreen/apache/infoscreen.conf:/etc/httpd/conf.d/infoscreen.conf
       - ./configs/infoscreen/php-fpm/www.conf:/etc/php-fpm.d/www.conf
+      - ./configs/infoscreen/php/php.ini:/etc/php.ini
       - ./logs/infoscreen/logs:/var/log/httpd
     network_mode: bridge
