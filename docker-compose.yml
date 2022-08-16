@@ -13,11 +13,12 @@ services:
   infoscreen:
     image: inuitviking/lpos:0.0.2
     ports:
-      - "8080:8080"
-    expose: [8080]
+      - "80:80"
+      - "443:443"
+    expose: [80,443]
     volumes:
       - ./configs/infoscreen/config:/var/www/config
       - ./configs/infoscreen/apache/httpd.conf:/etc/httpd/conf/httpd.conf
-      - ./data/infoscreen/data:/var/www/data
-      - ./logs/infoscreen/logs:/var/www/logs
+      - ./configs/infoscreen/apache/infoscreen.conf:/etc/httpd/conf.d/infoscreen.conf
+      - ./logs/infoscreen/logs:/var/log/httpd
     network_mode: bridge
