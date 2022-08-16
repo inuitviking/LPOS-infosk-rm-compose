@@ -17,8 +17,8 @@ services:
       - "443:443"
     expose: [80,443]
     volumes:
-      - ./configs/infoscreen/config:/var/www/config
       - ./configs/infoscreen/apache/httpd.conf:/etc/httpd/conf/httpd.conf
       - ./configs/infoscreen/apache/infoscreen.conf:/etc/httpd/conf.d/infoscreen.conf
+      - ./configs/infoscreen/php-fpm/www.conf:/etc/php-fpm.d/www.conf
       - ./logs/infoscreen/logs:/var/log/httpd
     network_mode: bridge
