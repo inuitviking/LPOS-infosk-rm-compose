@@ -1,1 +1,3 @@
 logs/infoscreen/logs/*
+logs/mosquitto/log/*
+data/mosquitto/*
