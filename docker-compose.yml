@@ -11,9 +11,10 @@ services:
       - ./configs/mosquitto/config:/mosquitto/config
       - ./data/mosquitto/data:/mosquitto/data
       - ./logs/mosquitto/log:/mosquitto/log
+      - ./configs/mosquitto/certs:/mosquitto/certs
     network_mode: bridge
   infoscreen:
-    image: inuitviking/lpos:0.0.3
+    image: inuitviking/lpos:0.0.3-aarch64
     ports:
       - "80:80"
       - "443:443"
