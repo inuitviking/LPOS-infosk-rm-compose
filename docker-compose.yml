@@ -11,7 +11,8 @@ services:
       - ./configs/mosquitto/config:/mosquitto/config
       - ./data/mosquitto/data:/mosquitto/data
       - ./logs/mosquitto/log:/mosquitto/log
-      - ./configs/mosquitto/certs:/mosquitto/certs
+      - ./configs/mosquitto/certs:/mosquitto/certs 
+      - ./configs/mosquitto/passwords:/mosquitto/passwords
     network_mode: bridge
   infoscreen:
     image: inuitviking/lpos:0.0.3-aarch64
