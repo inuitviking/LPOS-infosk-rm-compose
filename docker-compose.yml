@@ -1,0 +1,31 @@
+services:
+  mqtt:
+    image: eclipse-mosquitto:2-openssl
+    ports:
+      - "9883:9883"
+      - "8883:8883"
+      - "1883:1883"
+    expose: [1883,8883,9883]
+    #secrets:
+    #  - server-certificate
+    volumes:
+      - ./configs/mosquitto/config:/mosquitto/config
+      - ./data/mosquitto/data:/mosquitto/data
+      - ./logs/mosquitto/log:/mosquitto/log
+      - ./configs/mosquitto/certs:/mosquitto/certs 
+      - ./configs/mosquitto/passwords:/mosquitto/passwords
+    network_mode: bridge
+  infoscreen:
+    image: inuitviking/lpos:0.0.4-aarch64
+    ports:
+      - "80:80"
+      - "443:443"
+    expose: [80,443]
+    volumes:
+      - ./configs/infoscreen/apache/httpd.conf:/etc/httpd/conf/httpd.conf
+      - ./configs/infoscreen/apache/infoscreen.conf:/etc/httpd/conf.d/infoscreen.conf
+      - ./configs/infoscreen/php-fpm/www.conf:/etc/php-fpm.d/www.conf
+      - ./configs/infoscreen/php/php.ini:/etc/php.ini
+      - ./logs/infoscreen/logs:/var/log/httpd
+      - ./certs:/etc/httpd/certs
+    network_mode: bridge
